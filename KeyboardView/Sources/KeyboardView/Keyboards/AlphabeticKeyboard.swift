@@ -45,11 +45,11 @@ private extension Sequence where Iterator.Element == KeyboardActionRow {
     
     func addingSideActions(uppercased: Bool) -> [Iterator.Element] {
         var result = map { $0 }
-        result[1].insert(.custom(name: "17"), at: 0)
-        result[1].append(.custom(name: "17"))
+        result[1].insert(.custom(name: 17.auto().string), at: 0)
+        result[1].append(.custom(name: 17.auto().string))
         result[2].insert(uppercased ? .shift(currentState: .uppercased) : .shift(currentState: .lowercased), at: 0)
-        result[2].insert(.custom(name: "6"), at: 1)
-        result[2].append(.custom(name: "6"))
+        result[2].insert(.custom(name: 6.auto().string), at: 1)
+        result[2].append(.custom(name: 6.auto().string))
         result[2].append(.backspace)
         return result
     }

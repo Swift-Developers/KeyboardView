@@ -96,20 +96,20 @@ private extension KeyboardAction {
     
     var buttonWidth: CGFloat {
         switch self {
-        case .none: return 10
-        case .shift, .backspace: return 42
-        case .keyboardType(.numeric):    return 88
-        case .keyboardType(.symbolic):    return 42
-        case .keyboardType(.alphabetic):    return 88
-        case .newLine:    return 88
-        case .done:       return 88
-        case .space: return 182
+        case .none: return 10.auto()
+        case .shift, .backspace: return 42.auto()
+        case .keyboardType(.numeric):    return 88.auto()
+        case .keyboardType(.symbolic):    return 42.auto()
+        case .keyboardType(.alphabetic):    return 88.auto()
+        case .newLine:    return 88.auto()
+        case .done:       return 88.auto()
+        case .space: return 182.auto()
         case .character(let value) where [".", ",", "?", "!", "´"].contains(value):
-            return 45
+            return 45.auto()
         case .keyboardType(.custom(let value)) where value == "123":
-            return 42
+            return 42.auto()
             
-        default: return 32
+        default: return 32.auto()
         }
     }
 

@@ -11,7 +11,7 @@
         <!--View Controller-->
         <scene sceneID="5MQ-0P-omg">
             <objects>
-                <viewController id="GRh-Q9-dsf" customClass="ViewController" customModule="KeyboardView" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="GRh-Q9-dsf" customClass="ViewController" customModule="KeyboardView_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lMs-aS-MrD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -28,15 +28,27 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rPz-YA-Xey">
+                                <rect key="frame" x="57" y="304" width="300" height="34"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="l9F-fm-Z63"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="namePhonePad" keyboardAppearance="alert" smartDashesType="no"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1QC-fA-XRE"/>
                         <color key="backgroundColor" systemColor="systemPurpleColor"/>
                         <constraints>
                             <constraint firstItem="gLN-4E-Ejz" firstAttribute="centerY" secondItem="lMs-aS-MrD" secondAttribute="centerY" id="KGE-ne-q0r"/>
                             <constraint firstItem="gLN-4E-Ejz" firstAttribute="centerX" secondItem="lMs-aS-MrD" secondAttribute="centerX" id="eVv-TV-SHf"/>
+                            <constraint firstItem="rPz-YA-Xey" firstAttribute="centerX" secondItem="lMs-aS-MrD" secondAttribute="centerX" id="hWI-aE-dzw"/>
+                            <constraint firstItem="gLN-4E-Ejz" firstAttribute="top" secondItem="rPz-YA-Xey" secondAttribute="bottom" constant="10" id="yBk-e4-2iE"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="textField" destination="rPz-YA-Xey" id="Bco-uv-svX"/>
                         <outlet property="textView" destination="gLN-4E-Ejz" id="yYm-U2-hCq"/>
                     </connections>
                 </viewController>

@@ -43,11 +43,11 @@ extension KeyboardViewController {
 class KeyboardButtonRowView: UIView, KeyboardStackViewComponent {
     
     convenience init(
-        height: CGFloat = 42,
+        height: CGFloat = Constant.vertical.keyHeight,
         actions: KeyboardActionRow,
         alignment: UIStackView.Alignment = .fill,
         distribution: UIStackView.Distribution = .equalSpacing,
-        spacing: CGFloat = 5,
+        spacing: CGFloat = 5.auto(),
         buttonCreator: KeyboardButtonCreator) {
         self.init(frame: .zero)
         self.height = height

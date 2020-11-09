@@ -44,8 +44,8 @@ private extension Sequence where Iterator.Element == KeyboardActionRow {
     func addingSideActions() -> [Iterator.Element] {
         var actions = map { $0 }
         actions[2].insert(.keyboardType(.custom("123")), at: 0)
-        actions[2].insert(.custom(name: "8"), at: 1)
-        actions[2].append(.custom(name: "8"))
+        actions[2].insert(.custom(name: 8.auto().string), at: 1)
+        actions[2].append(.custom(name: 8.auto().string))
         actions[2].append(.backspace)
         return actions
     }

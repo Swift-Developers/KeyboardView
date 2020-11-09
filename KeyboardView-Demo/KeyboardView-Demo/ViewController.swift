@@ -11,6 +11,7 @@ import KeyboardView
 class ViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     
+    @IBOutlet weak var textField: UITextField!
     lazy var keyboard = AlphabeticKeyboardView()
     
     override func viewDidLoad() {
@@ -24,7 +25,9 @@ class ViewController: UIViewController {
     
     override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
-        keyboard.frame = CGRect(x: 0, y: 0, width: 375, height: 212 + view.safeAreaInsets.bottom + 40)
+        keyboard.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 212.0 + view.safeAreaInsets.bottom)
+        
+        UIResponder.keyboardDidShowNotification
     }
 }
 
@@ -46,8 +49,57 @@ class AlphabeticKeyboardView: UIView {
     private func setup() {
         addSubview(keyboard.view)
         keyboard.view.translatesAutoresizingMaskIntoConstraints = false
-        keyboard.view.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
+        keyboard.view.topAnchor.constraint(equalTo: topAnchor, constant: 5.0).isActive = true
         keyboard.view.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         keyboard.view.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+    }
+}
+
+extension Double {
+    
+    func auto() -> Double {
+        guard UIDevice.current.userInterfaceIdiom == .phone else {
+            return self
+        }
+        let base = 375.0
+        let screenWidth = Double(UIScreen.main.bounds.width)
+        let screenHeight = Double(UIScreen.main.bounds.height)
+        let width = min(screenWidth, screenHeight)
+        
+        let result = self * (width / base)
+        let scale = Double(UIScreen.main.scale)
+        return (result * scale).rounded(.up) / scale
+    }
+}
+//
+//extension BinaryInteger {
+//
+//    func auto() -> Double {
+//        let temp = Double("\(self)") ?? 0
+//        return temp.auto()
+//    }
+//    func auto<T>() -> T where T : BinaryInteger {
+//        let temp = Double("\(self)") ?? 0
+//        return temp.auto()
+//    }
+//    func auto<T>() -> T where T : BinaryFloatingPoint {
+//        let temp = Double("\(self)") ?? 0
+//        return temp.auto()
+//    }
+//}
+
+extension BinaryFloatingPoint {
+    
+    func auto() -> Double {
+        let temp = Double("\(self)") ?? 0
+        return temp.auto()
+    }
+    func auto<T>() -> T where T : BinaryInteger {
+        let temp = Double("\(self)") ?? 0
+        return T(temp.auto())
+    }
+    func auto<T>() -> T where T : BinaryFloatingPoint {
+        let temp = Double("\(self)") ?? 0
+        return T(temp.auto())
     }
 }

@@ -13,7 +13,7 @@ public class KeyboardViewController: KeyboardInputViewController {
     
 
     var keyboardTypes: [KeyboardType] = [.alphabetic(.lowercased), .alphabetic(.uppercased), .alphabetic(.capsLocked), .numeric, .symbolic]
-    lazy var keyboards: [Keyboard] = keyboardTypes.map { Keyboard($0) }
+    lazy var keyboards: [KeyboardWrapper] = keyboardTypes.map { KeyboardWrapper($0) }
     
     
     // MARK: - View Controller Lifecycle
@@ -25,8 +25,7 @@ public class KeyboardViewController: KeyboardInputViewController {
     
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        setupKeyboard(for: view.bounds.size)
-
+//        setupKeyboard(for: view.bounds.size)
     }
     
     public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -47,7 +46,7 @@ public class KeyboardViewController: KeyboardInputViewController {
     }
 }
 
-class Keyboard {
+class KeyboardWrapper {
     
     let keyboardType: KeyboardType
     let stackView: UIStackView = {
@@ -55,7 +54,7 @@ class Keyboard {
         stackView.axis = .vertical
         stackView.alignment = .center
         stackView.distribution = .equalSpacing
-        stackView.spacing = 12
+        stackView.spacing = Constant.vertical.spacing
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -65,7 +64,7 @@ class Keyboard {
     }
 }
 
-extension Array where Element == Keyboard {
+extension Array where Element == KeyboardWrapper {
     
     func stack(for keyboardType: KeyboardType) -> UIStackView? {
         first { $0.keyboardType == keyboardType }?.stackView
