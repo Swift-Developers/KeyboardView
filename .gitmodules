@@ -1,0 +1,3 @@
+[submodule "KeyboardView"]
+	path = KeyboardView
+	url = git@github.com:Swift-Developers/KeyboardView-Package.git
